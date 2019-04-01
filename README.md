@@ -1,7 +1,24 @@
 # realtime-data-process
 integration Storm , Kafka and Cassandra -  realtime data computation
 
-Folllowing setup is required 
+Requirment : 
+
+this is the project for user session tracking with the integration Storm ,Kafka and Cassandra by Real time.
+
+Base project  :
+
+  1. prodhanidatacassandra , for No sql DB casssandra.
+  2. prodhanidatastorm , for Storm real time data processing and kafka broker. 
+  3. prodhaniprotobuf , this is the data type which will be used in communication from
+      user web project to Kafka to storm . Actually this is quite faster comapre to JSON.
+      
+Implementing project :
+
+  4. prodhanidatausertracking , project as per the requirement which can be varied from requirement to requiremnet.
+  
+----------------------------
+
+Folllowing setup is required. 
 
 1. Kafka 
 2. Storm 
@@ -72,7 +89,7 @@ The UI can be accessed by navigating your web browser to http://
 
 6. command to export the topology jar
 
-storm jar landmarkdatausertracking-0.0.1-SNAPSHOT-jar-with-dependencies.jar -Dspring.profiles.active=live,userRequestTopology com.landmarkdata.storm.bootstrap.BootstrapApplication;
+storm jar prodhanidatausertracking-0.0.1-SNAPSHOT-jar-with-dependencies.jar -Dspring.profiles.active=live,userRequestTopology com.prodhanidata.storm.bootstrap.BootstrapApplication;
 
 CASSANDRA :
 =================================

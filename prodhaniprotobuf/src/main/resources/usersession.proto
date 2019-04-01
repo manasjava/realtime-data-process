@@ -1,0 +1,97 @@
+syntax = "proto2";
+
+option java_package = "com.prodhanidata.protobuf";
+option java_outer_classname = "UserSessionProtos";
+option optimize_for = SPEED;
+
+
+message UserRequest {
+
+	 required string sessionId = 2 ;
+	 optional string userId = 3;
+	 optional string orderId = 4;
+	 optional string cartId = 5;
+	 optional string mobileNumber = 6;
+	 optional string name = 7;
+	 optional string uiExperienceLabel = 8;
+	 repeated UserClickURL clickurl = 9;
+	 optional string createdOn = 10;
+	 optional string lastModified = 11;
+ } 
+
+message UserSession {
+
+	 required SessionKey sessionKey = 1;
+	 optional string mobileNumber = 4;
+	 optional string name = 5;
+	 optional string uiExperienceLabel = 6;
+	 repeated UserClickURL clickurl = 7;
+	 optional string createdOn = 8;
+	 optional string lastModified = 9;
+	 
+	 message SessionKey {
+	    required string sessionId = 1 ;
+	    optional string userId = 2;
+	  }
+	
+ } 
+ 
+ message Orders {
+
+  	
+	 required OrderKey orderKey = 1;
+	 optional string userId = 2;
+	 optional string mobileNumber = 4;
+	 optional string name = 5;
+	 optional string uiExperienceLabel = 6;
+	 repeated UserClickURL clickurl = 7;
+	 optional string createdOn = 8;
+	 optional string lastModified = 9;
+	 
+	 message OrderKey {
+	    required string sessionId = 1 ;
+	    optional string orderId = 2;
+	  }
+	
+ } 
+ 
+ message Carts {
+
+  	
+	 required CartKey cartKey = 1;
+	 optional string userId = 2;
+	 optional string mobileNumber = 4;
+	 optional string name = 5;
+	 optional string uiExperienceLabel = 6;
+	 repeated UserClickURL clickurl = 7;
+	 optional string createdOn = 8;
+	 optional string lastModified = 9;
+	 
+	 message CartKey {
+	    required string sessionId = 1 ;
+	    optional string cartId = 2;
+	  }
+	
+ } 
+  
+ message UserClickURL {
+ 
+     optional string url = 1;
+	 optional string responseStatus = 2;
+	 optional string requestTime = 3;
+	 optional string responseTime = 4;
+	 optional string requestMethodType = 5;
+	 optional string requestAction = 6;   
+	 repeated MapFieldEntry userClickURLParam = 7; 
+	 optional string exception = 8; 
+	 optional string requestBody = 9; 
+	 optional string responseBody = 10; 
+	 optional string createdOn = 11;
+	 optional string lastmodifed = 12;
+ }
+ 
+ message MapFieldEntry {
+  optional string key = 1;
+  optional string value = 2;
+}
+

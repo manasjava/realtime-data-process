@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+
+option java_package = "com.prodhanidata.usertracking.protobuf";
+option java_outer_classname = "UserSessionProtos";
+option optimize_for = SPEED;
+
+message UserSession {
+
+  	
+	 SessionKey sessionKey = 1;
+	 string mobileNumber = 2;
+	 string name = 3;
+	 string uiExperienceLabel = 4;
+	 repeated UserClickURL clickurl = 5;
+	 google.protobuf.Timestamp createdOn = 6;
+	 google.protobuf.Timestamp lastModified = 7;
+	 
+	 message SessionKey {
+	    string sessionId = 1 ;
+	    string userId = 2;
+	  }
+	
+ } 
+ 
+ message UserClickURL {
+ 
+     string url = 1;
+	 int32 responseStatus = 2;
+	 google.protobuf.Timestamp requestTime = 3;
+	 google.protobuf.Timestamp responseTime = 4;
+	 string requestMethodType = 5;
+	 string requestAction = 6;
+	 map<string, string> userClickURLParam = 7;
+	 google.protobuf.Timestamp createdOn = 8;
+	 google.protobuf.Timestamp lastmodifed = 9;
+ 
+ }
