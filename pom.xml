@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.prodhanidatamine</groupId>
+	<artifactId>datamine-server-projects</artifactId>
+    <packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<modules>		
+        <module>prodhaniprotobuf</module>
+		<module>prodhanidatacassandra</module>		
+		<module>prodhanidatastorm</module>	
+        <module>prodhanidatausertracking</module>	
+	</modules>
+	<properties>
+        <env>dev</env>
+   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>fat</id>
+			<properties>
+				<env>fat</env>
+			</properties>
+		</profile>
+
+	</profiles>
+	
+</project>
