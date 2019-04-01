@@ -1,0 +1,13 @@
+com/prodhanidata/cassandra/entity/UserSession.class
+com/prodhanidata/cassandra/repository/OrdersRepository.class
+com/prodhanidata/cassandra/repository/UserSessionRepository.class
+com/prodhanidata/cassandra/CassandraConfig.class
+com/prodhanidata/cassandra/entity/CartKey.class
+com/prodhanidata/cassandra/ProdhanidatacassandraApplication.class
+com/prodhanidata/cassandra/entity/OrdersEntity.class
+com/prodhanidata/cassandra/entity/CartEntity.class
+com/prodhanidata/cassandra/entity/SessionKey.class
+com/prodhanidata/cassandra/repository/CartsRepository.class
+com/prodhanidata/cassandra/entity/OrderKey.class
+com/prodhanidata/cassandra/entity/UserClickURL.class
+META-INF/spring-autoconfigure-metadata.properties

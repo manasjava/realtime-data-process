@@ -1,0 +1,12 @@
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/repository/CartsRepository.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/OrdersEntity.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/SessionKey.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/CartEntity.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/UserSession.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/CassandraConfig.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/OrderKey.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/ProdhanidatacassandraApplication.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/repository/OrdersRepository.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/repository/UserSessionRepository.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/CartKey.java
+/Users/rezaul.prodhani/rezaul/myBox/mygit/realtime-data-process/realtime-data-process/prodhanidatacassandra/src/main/java/com/prodhanidata/cassandra/entity/UserClickURL.java
