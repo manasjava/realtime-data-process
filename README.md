@@ -1,4 +1,4 @@
-if you face any issue to setup the integration , you can email here - prodhani.java@gmailcom  with details bug.
+if you face any issue to setup the integration , you can email here - prodhani.java@gmailcom  with bug deatils.
 
 # realtime-data-process
 integration Storm , Kafka and Cassandra -  realtime data computation
