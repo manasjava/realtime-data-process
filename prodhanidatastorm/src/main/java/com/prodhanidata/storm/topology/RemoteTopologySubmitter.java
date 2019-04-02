@@ -21,7 +21,7 @@ public class RemoteTopologySubmitter extends TopologySubmitter {
 	}
 
 	@Override
-	protected boolean submitTopology(LMGTopologyBuilder builder) {
+	protected boolean submitTopology(PDSTopologyBuilder builder) {
 		try {
 			StormSubmitter.submitTopology(builder.getTopologyName(), this.stromConf,
 					builder.createTopology());

@@ -4,16 +4,16 @@ import java.util.Map;
 
 import org.apache.storm.topology.TopologyBuilder;
 
-public class LMGTopologyBuilder extends TopologyBuilder{
+public class PDSTopologyBuilder extends TopologyBuilder{
 
 	private String topologyName;
 	private Map stormConf;
 	
-	public LMGTopologyBuilder(String topologyName) {
+	public PDSTopologyBuilder(String topologyName) {
 		super();
 		this.topologyName = topologyName;
 	}
-	public LMGTopologyBuilder(String topologyName,Map stormConf) {
+	public PDSTopologyBuilder(String topologyName,Map stormConf) {
 		super();
 		this.topologyName = topologyName;
 		this.stormConf = stormConf;

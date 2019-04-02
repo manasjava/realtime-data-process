@@ -13,9 +13,9 @@ import org.springframework.util.CollectionUtils;
 import com.prodhanidata.cassandra.entity.UserClickURL;
 import com.prodhanidata.protobuf.DateUtils;
 import com.prodhanidata.protobuf.UserSessionProtos;
-import com.prodhanidata.storm.bolt.AbstractLMGBaseRichBolt;
+import com.prodhanidata.storm.bolt.AbstractPDSBaseRichBolt;
 
-public abstract class  AbstractLMGUserTrackingBolt extends AbstractLMGBaseRichBolt {
+public abstract class  AbstractUserTrackingBolt extends AbstractPDSBaseRichBolt {
 
 	/**
 	 * 
@@ -130,19 +130,19 @@ public abstract class  AbstractLMGUserTrackingBolt extends AbstractLMGBaseRichBo
 //				JSONArray clickurlJSONArray = (JSONArray) userRequestJSON.get("clickurl");
 //				JSONObject urlInfoJSON = (JSONObject) clickurlJSONArray.get(0);
 ////				UserSession user = new UserSession();
-////				SessionKey key = new SessionKey(UUIDs.timeBased(),LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("sessionId")), 
-////						LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("userId")));
+////				SessionKey key = new SessionKey(UUIDs.timeBased(),CommonUtil.getStringFromJSONObject(userRequestJSON.get("sessionId")), 
+////						CommonUtil.getStringFromJSONObject(userRequestJSON.get("userId")));
 ////				user.setSessionKey(key);
-////				user.setName(LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("userName")));
-////				user.setMobileNumber(LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("mobileNumber")));
-////				user.setUiExperienceLabel(LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("uiLabel")));
+////				user.setName(CommonUtil.getStringFromJSONObject(userRequestJSON.get("userName")));
+////				user.setMobileNumber(CommonUtil.getStringFromJSONObject(userRequestJSON.get("mobileNumber")));
+////				user.setUiExperienceLabel(CommonUtil.getStringFromJSONObject(userRequestJSON.get("uiLabel")));
 ////				user.setCreatedOn(Calendar.getInstance().getTime());
 ////				user.setLastModified(Calendar.getInstance().getTime());
 ////				
 ////				
 ////				UserClickURL clickURL = new UserClickURL();
-////				clickURL.setUrl(LMGCommonUtil.getStringFromJSONObject(userRequestJSON.get("url")));
-////				clickURL.setResponseStatus(LMGCommonUtil.getIntegerFromJSONObject(userRequestJSON.get("urlStatus")));
+////				clickURL.setUrl(CommonUtil.getStringFromJSONObject(userRequestJSON.get("url")));
+////				clickURL.setResponseStatus(CommonUtil.getIntegerFromJSONObject(userRequestJSON.get("urlStatus")));
 ////				
 ////				List<UserClickURL> clickURLList = new ArrayList<>();
 ////				clickURLList.add(clickURL);
@@ -156,24 +156,24 @@ public abstract class  AbstractLMGUserTrackingBolt extends AbstractLMGBaseRichBo
 //
 //						UUIDs.timeBased() + "," +
 //
-//						LMGCommonUtil.getCQLComplienceValue(sessionKey.get("sessionId")) +
+//						CommonUtil.getCQLComplienceValue(sessionKey.get("sessionId")) +
 //
-//						LMGCommonUtil.getCQLComplienceValue(sessionKey.get("userId")) +
+//						CommonUtil.getCQLComplienceValue(sessionKey.get("userId")) +
 //
-//						LMGCommonUtil.getCQLComplienceValue(userRequestJSON.get("mobileNumber")) +
+//						CommonUtil.getCQLComplienceValue(userRequestJSON.get("mobileNumber")) +
 //
-//						LMGCommonUtil.getCQLComplienceValue(userRequestJSON.get("userName")) +
+//						CommonUtil.getCQLComplienceValue(userRequestJSON.get("userName")) +
 //
-//						LMGCommonUtil.getCQLComplienceValue(userRequestJSON.get("uiLabel")) +
+//						CommonUtil.getCQLComplienceValue(userRequestJSON.get("uiLabel")) +
 //
-//						"[{ " + "url :" + LMGCommonUtil.getCQLComplienceValue(urlInfoJSON.get("url"))
+//						"[{ " + "url :" + CommonUtil.getCQLComplienceValue(urlInfoJSON.get("url"))
 //						+ "responseStatus : "
-//						+ LMGCommonUtil.getCQLComplienceIntegerValueWithNoComma(urlInfoJSON.get("responseStatus")) + ","
-//						+ "requestTime : " + LMGCommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestTime"))
-//						+ "responseTime : " + LMGCommonUtil.getCQLComplienceValue(urlInfoJSON.get("responseTime"))
-//						+ "requestMethodType : " + LMGCommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestMethodType"))
-//						+ "requestAction : " + LMGCommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestAction"))
-//						+ "UserClickURLParam : " + LMGCommonUtil.getCQLComplienceJSON(urlInfoJSON.get("userClickURLParam"))
+//						+ CommonUtil.getCQLComplienceIntegerValueWithNoComma(urlInfoJSON.get("responseStatus")) + ","
+//						+ "requestTime : " + CommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestTime"))
+//						+ "responseTime : " + CommonUtil.getCQLComplienceValue(urlInfoJSON.get("responseTime"))
+//						+ "requestMethodType : " + CommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestMethodType"))
+//						+ "requestAction : " + CommonUtil.getCQLComplienceValue(urlInfoJSON.get("requestAction"))
+//						+ "UserClickURLParam : " + CommonUtil.getCQLComplienceJSON(urlInfoJSON.get("userClickURLParam"))
 //						+ "createdOn : toTimeStamp(now())," + "lastmodifed : toTimeStamp(now())" + "}]," +
 //
 //						"toTimeStamp(now())," +
@@ -200,7 +200,7 @@ public abstract class  AbstractLMGUserTrackingBolt extends AbstractLMGBaseRichBo
 //				}
 //			}
 //
-//			System.out.println("LMGUserRequestBolt cassandra save end");
+//			System.out.println("UserRequestBolt cassandra save end");
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}

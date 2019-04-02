@@ -18,7 +18,7 @@ public final class LocalTopologySubmitter extends TopologySubmitter {
 	LocalCluster cluster = new LocalCluster();
 
 	@Override
-	protected boolean submitTopology(LMGTopologyBuilder builder) {
+	protected boolean submitTopology(PDSTopologyBuilder builder) {
 		cluster.submitTopology(builder.getTopologyName(), this.stromConf, builder.createTopology());
 		return true;
 	}

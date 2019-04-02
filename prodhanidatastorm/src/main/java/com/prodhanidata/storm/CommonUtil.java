@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class LMGCommonUtil {
+public class CommonUtil {
 	
 	
 	public static String getStringFromJSONObject(Object value) {

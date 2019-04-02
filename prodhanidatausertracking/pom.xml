@@ -80,7 +80,7 @@
 			<version>1.4</version>
 		</dependency>
 
-		<!-- LMG project dependency -->
+		<!--  project dependency -->
 		<dependency>
 			<groupId>prodhanidatamine</groupId>
 			<artifactId>prodhanidatastorm</artifactId>

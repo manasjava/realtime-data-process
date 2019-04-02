@@ -9,9 +9,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.prodhanidata.storm.App;
+
 @Configuration
 @Profile("default")
 @PropertySource(value = { "classpath:default_configs.properties" })
+@ComponentScan(basePackageClasses={App.class})
 public class DefaultConfiguartion {
 
 	@Autowired

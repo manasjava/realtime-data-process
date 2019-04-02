@@ -3,14 +3,18 @@ package com.prodhanidata.storm.bootstrap;
 import org.apache.storm.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.prodhanidata.storm.App;
+
 @Configuration
 @Profile("live")
 @PropertySource(value = { "classpath:storm_configs.properties" })
+@ComponentScan(basePackageClasses={App.class})
 public class CustomeConfiguartion {
 	
 	@Autowired
