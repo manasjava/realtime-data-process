@@ -9,7 +9,7 @@ import org.apache.storm.topology.base.BaseRichBolt;
 import org.apache.storm.tuple.Tuple;
 
 
-public abstract class AbstractLMGBaseRichBolt extends BaseRichBolt{
+public abstract class AbstractPDSBaseRichBolt extends BaseRichBolt{
 
 	/**
 	 * 

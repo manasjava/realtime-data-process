@@ -21,10 +21,10 @@ import com.prodhanidata.cassandra.entity.UserSession;
 import com.prodhanidata.cassandra.repository.UserSessionRepository;
 import com.prodhanidata.protobuf.UserSessionProtos;
 
-@Component("lmgUserRequestBolt")
+@Component("userRequestBolt")
 @Profile("userRequestTopology")
-@DependsOn({ "userRequestTopology" })
-public class LMGUserRequestBolt extends AbstractLMGUserTrackingBolt {
+@DependsOn({ "userRequestTopologyBuilder" })
+public class UserRequestBolt extends AbstractUserTrackingBolt {
 
 	/**
 	 * 
@@ -37,24 +37,24 @@ public class LMGUserRequestBolt extends AbstractLMGUserTrackingBolt {
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 
-		System.out.println("LMGUserRequestBolt prepare Start");
+		System.out.println("UserRequestBolt prepare Start");
 
 		this.collector = collector;
 		InitializeApplicationContext();
 		sessionRepository = applicationContext.getBean(UserSessionRepository.class);
 
-		System.out.println("LMGUserRequestBolt prepare End");
+		System.out.println("UserRequestBolt prepare End");
 
 	}
 
 	@Override
 	public void execute(Tuple tuple) {
 
-		System.out.println("LMGUserRequestBolt cassandra save start ");
+		System.out.println("UserRequestBolt cassandra save start ");
 		
 		UserSessionProtos.UserRequest userRequest = (UserSessionProtos.UserRequest) tuple.getValueByField("content");
 
-		System.out.println("LMGUserRequestBolt UserSessionProtos.UserSession  " + userRequest);
+		System.out.println("UserRequestBolt UserSessionProtos.UserSession  " + userRequest);
 
 		try {
 			saveProtobufMessage(userRequest);
@@ -110,11 +110,11 @@ public class LMGUserRequestBolt extends AbstractLMGUserTrackingBolt {
 
 	@Override
 	public void cleanup() {
-		System.out.println("LMGUserRequestBolt test  cleanup");
+		System.out.println("UserRequestBolt test  cleanup");
 	}
 
 	@Override
 	public void declareOutputFields(org.apache.storm.topology.OutputFieldsDeclarer declarer) {
-		System.out.println("LMGUserRequestBolt test declareOutputFields");
+		System.out.println("UserRequestBolt test declareOutputFields");
 	}
 }

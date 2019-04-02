@@ -16,44 +16,44 @@ import org.springframework.util.CollectionUtils;
 
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.prodhanidata.cassandra.entity.CartEntity;
-import com.prodhanidata.cassandra.entity.CartKey;
+import com.prodhanidata.cassandra.entity.OrderKey;
+import com.prodhanidata.cassandra.entity.OrdersEntity;
 import com.prodhanidata.cassandra.entity.UserClickURL;
-import com.prodhanidata.cassandra.repository.CartsRepository;
-import com.prodhanidata.protobuf.UserSessionProtos;
+import com.prodhanidata.cassandra.repository.OrdersRepository;
+import com.prodhanidata.protobuf.UserSessionProtos;;
 
-@Component("lmgCartBolt")
+@Component("userOrderBolt")
 @Profile("userRequestTopology")
-@DependsOn({ "userRequestTopology" })
-public class LMGCartBolt extends AbstractLMGUserTrackingBolt {
+@DependsOn({ "userRequestTopologyBuilder" })
+public class UserOrderBolt extends AbstractUserTrackingBolt {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	CartsRepository cartRepository;
+	OrdersRepository orderRepository;
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		
-		System.out.println("LMGCartBolt prepare Start");
+		System.out.println("OrderBolt prepare Start");
 		
 		this.collector = collector;
 		InitializeApplicationContext();
-		cartRepository = applicationContext.getBean(CartsRepository.class);
+		orderRepository = applicationContext.getBean(OrdersRepository.class);
 		
-		System.out.println("LMGCartBolt prepare End");
+		System.out.println("OrderBolt prepare End");
 	}
 
 	@Override
 	public void execute(Tuple tuple) {
 		
-		System.out.println("LMGCartBolt cassandra save start ");
+		System.out.println("OrderBolt cassandra save start ");
 
 		UserSessionProtos.UserRequest userRequest = (UserSessionProtos.UserRequest) tuple.getValueByField("content");
 
-		System.out.println("LMGCartBolt UserSessionProtos.UserRequest  " + userRequest);
+		System.out.println("OrderBolt UserSessionProtos.UserSession  " + userRequest);
 
 		try {
 			saveProtobufMessage(userRequest);
@@ -76,39 +76,39 @@ public class LMGCartBolt extends AbstractLMGUserTrackingBolt {
 	
 	private void saveProtobufMessage(UserSessionProtos.UserRequest userRequest) throws InvalidProtocolBufferException {
 
-		CartEntity cartEntity = null;
+		OrdersEntity ordersEntity = null;
 		Date now = Calendar.getInstance().getTime();
 
-		List<CartEntity> cartsEntityList = cartRepository.findCartEntityByCartKeySessionIdAndCartKeyCartId(userRequest.getSessionId(), userRequest.getCartId());
+		List<OrdersEntity> ordersEntityList = orderRepository.findOrdersEntityByOrderKeySessionIdAndOrderKeyOrderId(userRequest.getSessionId(), userRequest.getOrderId());
 		
 		List<UserClickURL> clickURLs = getUserClickURLList(userRequest.getClickurlList(), now);
-		if (!CollectionUtils.isEmpty(cartsEntityList)) {
-			cartEntity = cartsEntityList.get(0);
-			cartEntity.getClickurl().addAll(clickURLs);
-			cartEntity.setLastModified(now);
+		if (!CollectionUtils.isEmpty(ordersEntityList)) {
+			ordersEntity = ordersEntityList.get(0);
+			ordersEntity.getClickurl().addAll(clickURLs);
+			ordersEntity.setLastModified(now);
 		} else {
-			cartEntity = new CartEntity();
+			ordersEntity = new OrdersEntity();
 
-			CartKey orderKey = new CartKey();
+			OrderKey orderKey = new OrderKey();
 			orderKey.setId(UUIDs.timeBased());
 			orderKey.setSessionId(userRequest.getSessionId());
-			orderKey.setCartId(userRequest.getCartId());
-			cartEntity.setCartKey(orderKey);
+			orderKey.setOrderId(userRequest.getOrderId());
+			ordersEntity.setOrderKey(orderKey);
 			
-			cartEntity.setClickurl(clickURLs);
-			cartEntity.setLastModified(now);
-			cartEntity.setCreatedOn(now);
+			ordersEntity.setClickurl(clickURLs);
+			ordersEntity.setLastModified(now);
+			ordersEntity.setCreatedOn(now);
 		}
 		if (userRequest.hasName()) {
-			cartEntity.setName(userRequest.getName());
+			ordersEntity.setName(userRequest.getName());
 		}
 		if (userRequest.hasMobileNumber()) {
-			cartEntity.setMobileNumber(userRequest.getMobileNumber());
+			ordersEntity.setMobileNumber(userRequest.getMobileNumber());
 		}
 		if (userRequest.hasUiExperienceLabel()) {
-			cartEntity.setUiExperienceLabel(userRequest.getUiExperienceLabel());
+			ordersEntity.setUiExperienceLabel(userRequest.getUiExperienceLabel());
 		}
-		cartRepository.save(cartEntity);
+		orderRepository.save(ordersEntity);
 
 	}
 

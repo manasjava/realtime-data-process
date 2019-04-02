@@ -7,35 +7,35 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.prodhanidata.cassandra.repository.UserSessionRepository;
-import com.prodhanidata.storm.bolt.AbstractLMGBaseRichBolt;
-import com.prodhanidata.storm.bootstrap.LMGSpringContextUtil;
+import com.prodhanidata.storm.bolt.AbstractPDSBaseRichBolt;
+import com.prodhanidata.storm.bootstrap.PDSSpringContextUtil;
 import com.prodhanidata.storm.spout.AbstractSpoutBuilder;
-import com.prodhanidata.storm.topology.AbstractLMGTopology;
+import com.prodhanidata.storm.topology.AbstractPDSTopology;
 
 @Component
 @Profile("userRequestTopology")
-public class LMGUserRequestTopology extends AbstractLMGTopology {
+public class UserRequestTopology extends AbstractPDSTopology {
 
-	@Resource(name="lmgUserRequestSpoutBuilder")
+	@Resource(name="userRequestSpoutBuilder")
 	private AbstractSpoutBuilder spoutBuilder;
 	
-	@Resource(name="lmgRequestSinkBolt")
-	AbstractLMGBaseRichBolt sinkBolt;
+	@Resource(name="requestSinkBolt")
+	AbstractPDSBaseRichBolt sinkBolt;
 	
-	@Resource(name="lmgCartBolt")
-	AbstractLMGBaseRichBolt cartBolt;
+	@Resource(name="userCartBolt")
+	AbstractPDSBaseRichBolt cartBolt;
 	
-	@Resource(name="lmgOrderBolt")
-	AbstractLMGBaseRichBolt orderBolt;
+	@Resource(name="userOrderBolt")
+	AbstractPDSBaseRichBolt orderBolt;
 	
-	@Resource(name="lmgUserRequestBolt")
-	AbstractLMGBaseRichBolt userRequestBolt;
+	@Resource(name="userRequestBolt")
+	AbstractPDSBaseRichBolt userRequestBolt;
 	
-	@Resource(name="userRequestTopology")
+	@Resource(name="userRequestTopologyBuilder")
 	TopologyBuilder builder;
 	
 	@Resource
-	LMGSpringContextUtil contextUtil;
+	PDSSpringContextUtil contextUtil;
 	
 	@Resource
 	private UserSessionRepository sessionRepository;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.prodhanidata.storm.spout.AbstractSpoutBuilder;
 
-@Component("lmgUserRequestSpoutBuilder")
-public class LMGUserRequestSpoutBuilder  extends AbstractSpoutBuilder{
+@Component("userRequestSpoutBuilder")
+public class UserRequestSpoutBuilder  extends AbstractSpoutBuilder{
 
 }

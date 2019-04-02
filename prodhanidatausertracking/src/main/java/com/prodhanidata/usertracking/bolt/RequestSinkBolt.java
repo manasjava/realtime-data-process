@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.prodhanidata.protobuf.UserSessionProtos;
-import com.prodhanidata.usertracking.topology.LMGUserRequestTopology;
+import com.prodhanidata.usertracking.topology.UserRequestTopology;
 
-@Component("lmgRequestSinkBolt")
+@Component("requestSinkBolt")
 @Profile("userRequestTopology")
-@DependsOn({ "userRequestTopology" })
-public class LMGRequestSinkBolt extends AbstractLMGUserTrackingBolt {
+@DependsOn({ "userRequestTopologyBuilder" })
+public class RequestSinkBolt extends AbstractUserTrackingBolt {
 
 	/**
 	 * 
@@ -41,14 +41,14 @@ public class LMGRequestSinkBolt extends AbstractLMGUserTrackingBolt {
 			System.out.println(" UserSessionProtos.UserSession " + sessionProto.toString());
 			
 			if (isOrderRequest(sessionProto)) {
-				collector.emit(LMGUserRequestTopology.ORDER_BOLT_STREAM,
-						new Values(LMGUserRequestTopology.ORDER_BOLT_STREAM, sessionProto));
+				collector.emit(UserRequestTopology.ORDER_BOLT_STREAM,
+						new Values(UserRequestTopology.ORDER_BOLT_STREAM, sessionProto));
 			}if (isCartRequest(sessionProto)) {
-				collector.emit(LMGUserRequestTopology.CART_BOLT_STREAM,
-						new Values(LMGUserRequestTopology.CART_BOLT_STREAM, sessionProto));
+				collector.emit(UserRequestTopology.CART_BOLT_STREAM,
+						new Values(UserRequestTopology.CART_BOLT_STREAM, sessionProto));
 			} else {
-				collector.emit(LMGUserRequestTopology.USER_REQUEST_BOLT_STREAM,
-						new Values(LMGUserRequestTopology.USER_REQUEST_BOLT_STREAM, sessionProto));
+				collector.emit(UserRequestTopology.USER_REQUEST_BOLT_STREAM,
+						new Values(UserRequestTopology.USER_REQUEST_BOLT_STREAM, sessionProto));
 			}
 			collector.ack(tuple);
 
@@ -62,14 +62,14 @@ public class LMGRequestSinkBolt extends AbstractLMGUserTrackingBolt {
 
 	@Override
 	public void cleanup() {
-		System.out.println("LMGRequestSinkBolt test  cleanup");
+		System.out.println("RequestSinkBolt test  cleanup");
 	}
 
 	@Override
 	public void declareOutputFields(org.apache.storm.topology.OutputFieldsDeclarer declarer) {
-		System.out.println("LMGRequestSinkBolt test declareOutputFields");
-		declarer.declareStream(LMGUserRequestTopology.CART_BOLT_STREAM, new Fields(STREAM_TYPE, STREAM_CONTENT));
-		declarer.declareStream(LMGUserRequestTopology.ORDER_BOLT_STREAM, new Fields(STREAM_TYPE, STREAM_CONTENT));
-		declarer.declareStream(LMGUserRequestTopology.USER_REQUEST_BOLT_STREAM,new Fields(STREAM_TYPE, STREAM_CONTENT));
+		System.out.println("RequestSinkBolt test declareOutputFields");
+		declarer.declareStream(UserRequestTopology.CART_BOLT_STREAM, new Fields(STREAM_TYPE, STREAM_CONTENT));
+		declarer.declareStream(UserRequestTopology.ORDER_BOLT_STREAM, new Fields(STREAM_TYPE, STREAM_CONTENT));
+		declarer.declareStream(UserRequestTopology.USER_REQUEST_BOLT_STREAM,new Fields(STREAM_TYPE, STREAM_CONTENT));
 	}
 }

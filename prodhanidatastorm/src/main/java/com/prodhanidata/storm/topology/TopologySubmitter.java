@@ -2,7 +2,6 @@ package com.prodhanidata.storm.topology;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.apache.storm.Config;
@@ -15,8 +14,8 @@ public abstract class TopologySubmitter {
 	public TopologySubmitter(Config stromConf) {
 		this.stromConf = stromConf;
 	}
-	@Autowired
-	protected List<AbstractLMGTopology> topologyList;
+	@Autowired(required=true)
+	protected List<AbstractPDSTopology> topologyList;
 
 	public void loadTopology() {
 
@@ -24,7 +23,7 @@ public abstract class TopologySubmitter {
 
 			topologyList.forEach(topology -> {
 
-				LMGTopologyBuilder builder = (LMGTopologyBuilder) topology.buildTopologyBuilder();
+				PDSTopologyBuilder builder = (PDSTopologyBuilder) topology.buildTopologyBuilder();
 
 				if (builder.getStormConf() == null) {
 					builder.setStormConf(getDefaultStormConfig());
@@ -46,13 +45,13 @@ public abstract class TopologySubmitter {
 		return configs;
 	}
 
-	protected abstract boolean submitTopology(LMGTopologyBuilder builder);
+	protected abstract boolean submitTopology(PDSTopologyBuilder builder);
 
-	public List<AbstractLMGTopology> getTopologyList() {
+	public List<AbstractPDSTopology> getTopologyList() {
 		return topologyList;
 	}
 
-	public void setTopologyList(List<AbstractLMGTopology> topologyList) {
+	public void setTopologyList(List<AbstractPDSTopology> topologyList) {
 		this.topologyList = topologyList;
 	}
 	

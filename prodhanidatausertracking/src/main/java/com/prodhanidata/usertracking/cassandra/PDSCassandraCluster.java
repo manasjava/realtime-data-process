@@ -3,7 +3,7 @@ package com.prodhanidata.usertracking.cassandra;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 
-public class LMGCassandraCluster {
+public class PDSCassandraCluster {
 
 //	private KeyspaceRepository schemaRepository;
 //	private Session session;

@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.apache.storm.Config;
 
 import com.prodhanidata.storm.bootstrap.BootstrapApplication;
-import com.prodhanidata.storm.topology.AbstractLMGTopology;
+import com.prodhanidata.storm.topology.AbstractPDSTopology;
 import com.prodhanidata.storm.topology.RemoteTopologySubmitter;
 import com.prodhanidata.storm.topology.TopologySubmitter;
 
@@ -32,15 +32,15 @@ public class TopologyLoader {
 //		
 //		TopologySubmitter submitter = new RemoteTopologySubmitter(conf);
 //		
-//		AbstractLMGTopology topology = new LMGUserRequestTopology();
-//		List<AbstractLMGTopology> topoList = new ArrayList<>();
+//		AbstractPDSTopology topology = new UserRequestTopology();
+//		List<AbstractPDSTopology> topoList = new ArrayList<>();
 //		topoList.add(topology);
 //		
 //		submitter.setTopologyList(topoList);
 //		submitter.loadTopology();
 		
-		
-//		BootstrapApplication.loadBootstrap();
+	    System.setProperty("spring.profiles.default", "userRequestTopology,live");
+		BootstrapApplication.main(args);
 //		// creating UUID      
 //	      UUID uid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");     
 //
